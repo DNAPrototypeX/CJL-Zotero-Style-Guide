@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
+  <info>
+    <title>Canadian Journal of Linguistics / Revue canadienne de linguistique</title>
+    <title-short>CJL/RCL</title-short>
+    <id>http://www.zotero.org/styles/canadian-journal-of-linguistics</id>
+    <link href="http://www.zotero.org/styles/canadian-journal-of-linguistics" rel="self"/>
+    <link href="https://www.cambridge.org/core/journals/canadian-journal-of-linguistics-revue-canadienne-de-linguistique" rel="documentation"/>
+    <author>
+      <name>Claude (Anthropic)</name>
+    </author>
+    <category citation-format="author-date"/>
+    <category field="linguistics"/>
+    <issn>0008-4131</issn>
+    <eissn>1710-1115</eissn>
+    <summary>Style for the Canadian Journal of Linguistics / Revue canadienne de linguistique, based on the January 2017 style guide.</summary>
+    <updated>2026-04-15T00:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <!-- LOCALE OVERRIDES -->
+  <locale xml:lang="en">
+    <terms>
+      <term name="editor" form="short">ed.</term>
+      <term name="editortranslator" form="short">ed. and trans.</term>
+      <term name="edition" form="short">ed.</term>
+      <term name="translator" form="short">trans.</term>
+      <term name="no date">n.d.</term>
+      <term name="page-range-delimiter">–</term>
+    </terms>
+  </locale>
+
+  <!-- MACROS -->
+
+  <!-- Author macro for bibliography: Full names, no ampersand -->
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="first" and="text" sort-separator=", " delimiter=", " delimiter-precedes-last="always"/>
+      <label form="short" prefix=", "/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Author for in-text citation: short form -->
+  <macro name="author-short">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", " delimiter-precedes-last="never"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title" form="short"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Editor macro for containers (chapters in books, etc.) -->
+  <macro name="editor">
+    <names variable="editor">
+      <label form="short" suffix=" "/>
+      <name and="text" delimiter=", " delimiter-precedes-last="always"/>
+    </names>
+  </macro>
+
+  <!-- Date macro -->
+  <macro name="issued">
+    <choose>
+      <if variable="issued">
+        <group>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+          <text variable="year-suffix"/>
+        </group>
+      </if>
+      <else-if variable="status">
+        <text variable="status" text-case="capitalize-first"/>
+      </else-if>
+      <else>
+        <text term="no date" prefix="[" suffix="]"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Date for in-text citations -->
+  <macro name="issued-year">
+    <choose>
+      <if variable="issued">
+        <group>
+          <date variable="issued">
+            <date-part name="year"/>
+          </date>
+          <text variable="year-suffix"/>
+        </group>
+      </if>
+      <else-if variable="status">
+        <text variable="status" text-case="capitalize-first"/>
+      </else-if>
+      <else>
+        <text term="no date" prefix="[" suffix="]"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Title macro: sentence case for most, title case for journals/conferences -->
+  <macro name="title">
+    <choose>
+      <if type="bill book graphic legal_case legislation motion_picture report song thesis" match="any">
+        <text variable="title" font-style="italic" text-case="sentence"/>
+      </if>
+      <else>
+        <text variable="title" text-case="sentence"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Container title (journal name, book title) -->
+  <macro name="container-title">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text variable="container-title" font-style="italic" text-case="title"/>
+      </if>
+      <else-if type="chapter paper-conference" match="any">
+        <group delimiter=", ">
+          <group delimiter=" ">
+            <text term="in" text-case="capitalize-first"/>
+            <text variable="container-title" font-style="italic" text-case="sentence"/>
+          </group>
+          <text macro="editor"/>
+        </group>
+      </else-if>
+    </choose>
+  </macro>
+
+  <!-- Edition -->
+  <macro name="edition">
+    <choose>
+      <if is-numeric="edition">
+        <group delimiter=" ">
+          <number variable="edition" form="ordinal"/>
+          <text term="edition" form="short"/>
+        </group>
+      </if>
+      <else>
+        <text variable="edition"/>
+      </else>
+    </choose>
+  </macro>
+
+  <!-- Publisher: City: Publisher -->
+  <macro name="publisher">
+    <group delimiter=": ">
+      <text variable="publisher-place"/>
+      <text variable="publisher"/>
+    </group>
+  </macro>
+
+  <!-- Pages -->
+  <macro name="pages">
+    <text variable="page"/>
+  </macro>
+
+  <!-- Locator for in-text citations (page numbers after colon) -->
+  <macro name="citation-locator">
+    <text variable="locator"/>
+  </macro>
+
+  <!-- Access (URL) -->
+  <macro name="access">
+    <choose>
+      <if variable="URL">
+        <text variable="URL"/>
+      </if>
+    </choose>
+  </macro>
+
+  <!-- Sort key for bibliography -->
+  <macro name="sort-key">
+    <names variable="author">
+      <name name-as-sort-order="all" and="text" sort-separator=", " delimiter=", "/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- CITATION (in-text) -->
+  <!-- Format: Moore (1965) or (Moore 1965) or (Moore 1965: 14–15) -->
+  <!-- Two authors: both names, no ampersand -->
+  <!-- Three+ authors: first et al. -->
+  <!-- Multiple refs separated by commas; semicolons if internal commas -->
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-givenname="true" disambiguate-add-year-suffix="true" collapse="year" givenname-disambiguation-rule="all-names-with-initials">
+    <sort>
+      <key variable="issued"/>
+      <key macro="author-short"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=": ">
+        <group delimiter=" ">
+          <text macro="author-short"/>
+          <text macro="issued-year"/>
+        </group>
+        <text macro="citation-locator"/>
+      </group>
+    </layout>
+  </citation>
+
+  <!-- BIBLIOGRAPHY -->
+  <bibliography hanging-indent="true" et-al-min="99" et-al-use-first="98" entry-spacing="0" subsequent-author-substitute="">
+    <sort>
+      <key macro="sort-key"/>
+      <key variable="issued"/>
+    </sort>
+    <layout suffix=".">
+      <group delimiter=". ">
+        <!-- Author. Year. -->
+        <text macro="author"/>
+        <text macro="issued"/>
+        <!-- Title -->
+        <text macro="title"/>
+        <!-- Type-specific formatting -->
+        <choose>
+          <!-- JOURNAL ARTICLES -->
+          <if type="article-journal article-magazine" match="any">
+            <group delimiter=" ">
+              <text variable="container-title" font-style="italic" text-case="title"/>
+              <group>
+                <text variable="volume"/>
+                <text variable="issue" prefix="(" suffix=")"/>
+                <text macro="pages" prefix=": "/>
+              </group>
+            </group>
+          </if>
+
+          <!-- BOOKS -->
+          <else-if type="book" match="any">
+            <text macro="edition"/>
+            <text macro="publisher"/>
+          </else-if>
+
+          <!-- CHAPTERS / PAPERS IN PROCEEDINGS -->
+          <else-if type="chapter paper-conference" match="any">
+            <group delimiter=", ">
+              <text macro="container-title"/>
+              <text macro="pages"/>
+            </group>
+            <text macro="publisher"/>
+          </else-if>
+
+          <!-- THESIS -->
+          <else-if type="thesis">
+            <choose>
+              <if variable="genre">
+                <text variable="genre"/>
+              </if>
+              <else>
+                <text value="Doctoral dissertation"/>
+              </else>
+            </choose>
+            <text variable="publisher"/>
+          </else-if>
+
+          <!-- UNPUBLISHED / MANUSCRIPT -->
+          <else-if type="manuscript">
+            <group delimiter=", ">
+              <text value="Ms."/>
+              <text variable="publisher"/>
+            </group>
+          </else-if>
+
+          <!-- REVIEW -->
+          <else-if type="review review-book" match="any">
+            <group delimiter=" ">
+              <text value="Review of"/>
+              <text variable="reviewed-title" font-style="italic"/>
+            </group>
+            <group delimiter=" ">
+              <text variable="container-title" font-style="italic" text-case="title"/>
+              <group>
+                <text variable="volume"/>
+                <text variable="issue" prefix="(" suffix=")"/>
+                <text macro="pages" prefix=": "/>
+              </group>
+            </group>
+          </else-if>
+
+          <!-- SPEECH / CONFERENCE PAPER (not in proceedings) -->
+          <else-if type="speech" match="any">
+            <group delimiter=", ">
+              <text value="Paper presented at"/>
+              <text variable="event"/>
+              <text variable="event-place"/>
+            </group>
+          </else-if>
+
+          <!-- WEBPAGE / ONLINE -->
+          <else-if type="webpage post post-weblog" match="any">
+            <text macro="publisher"/>
+          </else-if>
+
+          <!-- REPORT -->
+          <else-if type="report">
+            <text macro="publisher"/>
+          </else-if>
+
+          <!-- DEFAULT / OTHER -->
+          <else>
+            <text macro="container-title"/>
+            <text macro="publisher"/>
+          </else>
+        </choose>
+      </group>
+      <!-- URL at the end -->
+      <text macro="access" prefix=". "/>
+    </layout>
+  </bibliography>
+</style>
